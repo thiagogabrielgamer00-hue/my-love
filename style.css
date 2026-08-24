@@ -1,0 +1,871 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #fff7f9;
+    color: #3d2730;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   CORAÇÕES FLUTUANTES
+========================= */
+
+.hearts-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -50px;
+    opacity: 0;
+    animation: floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    90% {
+        opacity: 0.25;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 150, 180, 0.2),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 120, 160, 0.2),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #fff1f5,
+            #fff9fb
+        );
+}
+
+.hero-content {
+    max-width: 750px;
+
+    position: relative;
+
+    z-index: 2;
+
+    animation: heroAppear 1.2s ease;
+}
+
+@keyframes heroAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.heart-icon {
+    font-size: 70px;
+
+    margin-bottom: 20px;
+
+    animation: heartbeat 1.8s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.small-title,
+.section-subtitle {
+    letter-spacing: 4px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #d05a7b;
+
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-family: "Dancing Script", cursive;
+
+    font-size: clamp(80px, 13vw, 150px);
+
+    line-height: 1;
+
+    color: #bd3e66;
+
+    margin: 10px 0 25px;
+}
+
+.hero-text {
+    max-width: 550px;
+
+    margin: auto;
+
+    line-height: 1.8;
+
+    font-size: 17px;
+
+    color: #765963;
+}
+
+.hero-button {
+    display: inline-block;
+
+    margin-top: 35px;
+
+    padding: 14px 30px;
+
+    border-radius: 50px;
+
+    background: #bd3e66;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 10px 30px rgba(189, 62, 102, 0.25);
+
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(189, 62, 102, 0.35);
+}
+
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.section {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 110px 25px;
+}
+
+.section h2 {
+    font-family: "Dancing Script", cursive;
+
+    font-size: 58px;
+
+    color: #a9365c;
+
+    text-align: center;
+
+    margin-top: 5px;
+}
+
+.section-subtitle {
+    text-align: center;
+}
+
+.section-description {
+    text-align: center;
+
+    color: #876b74;
+
+    margin-top: 10px;
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+.counter-section {
+    text-align: center;
+}
+
+.counter {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 15px;
+
+    margin-top: 55px;
+}
+
+.counter-box {
+    background: white;
+
+    padding: 25px 10px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 35px rgba(120, 60, 80, 0.08);
+
+    border: 1px solid #f5dfe6;
+
+    transition: 0.3s;
+}
+
+.counter-box:hover {
+    transform: translateY(-5px);
+}
+
+.counter-box span {
+    display: block;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    color: #bd3e66;
+}
+
+.counter-box small {
+    color: #8c7079;
+}
+
+.date-card {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 35px;
+
+    padding: 18px 28px;
+
+    background: #fff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(120, 60, 80, 0.07);
+
+    text-align: left;
+}
+
+.date-card span {
+    font-size: 30px;
+}
+
+.date-card strong {
+    font-size: 13px;
+
+    color: #98737e;
+}
+
+.date-card p {
+    color: #bd3e66;
+
+    font-weight: 600;
+
+    margin-top: 3px;
+}
+
+
+/* =========================
+   FRASE
+========================= */
+
+.quote-section {
+    position: relative;
+
+    padding: 120px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #bd3e66,
+            #d75b7f
+        );
+
+    color: white;
+}
+
+.quote-content {
+    max-width: 800px;
+
+    margin: auto;
+}
+
+.quote-heart {
+    font-size: 35px;
+}
+
+.quote-content p {
+    font-family: "Dancing Script", cursive;
+
+    font-size: clamp(35px, 5vw, 55px);
+
+    line-height: 1.3;
+
+    margin: 20px 0;
+}
+
+.quote-line {
+    display: block;
+
+    width: 60px;
+
+    height: 2px;
+
+    background: white;
+
+    margin: auto;
+
+    opacity: 0.6;
+}
+
+
+/* =========================
+   GALERIA
+========================= */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+
+    margin-top: 50px;
+}
+
+.media-card {
+    background: white;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 40px rgba(120, 60, 80, 0.1);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    opacity: 1;
+}
+
+.media-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 20px 50px rgba(120, 60, 80, 0.15);
+}
+
+.media-card img,
+.media-card video {
+    display: block;
+
+    width: 100%;
+
+    height: 350px;
+
+    object-fit: cover;
+
+    background: #1f1519;
+}
+
+.media-card video {
+    object-fit: contain;
+}
+
+.media-caption {
+    padding: 22px;
+}
+
+.media-caption h3 {
+    color: #a9365c;
+
+    margin: 6px 0;
+}
+
+.media-caption p {
+    color: #866d75;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.media-type {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #bd3e66;
+}
+
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline {
+    position: relative;
+
+    max-width: 800px;
+
+    margin: 60px auto 0;
+}
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 2px;
+
+    background: #e7a5b8;
+
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+
+    width: 50%;
+
+    padding: 20px 40px;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    top: 25px;
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: white;
+
+    border: 2px solid #e7a5b8;
+
+    z-index: 2;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -22px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -22px;
+}
+
+.timeline-card {
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(120, 60, 80, 0.08);
+}
+
+.timeline-date {
+    font-size: 12px;
+
+    color: #bd3e66;
+
+    font-weight: 600;
+}
+
+.timeline-card h3 {
+    margin: 7px 0;
+
+    color: #713447;
+}
+
+.timeline-card p {
+    font-size: 14px;
+
+    color: #806b72;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+.message-section {
+    position: relative;
+
+    padding: 120px 25px;
+
+    background: #fff0f4;
+}
+
+.message-card {
+    max-width: 800px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 60px 50px;
+
+    border-radius: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(120, 60, 80, 0.1);
+}
+
+.message-icon {
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.message-card h2 {
+    font-family: "Dancing Script", cursive;
+
+    font-size: 48px;
+
+    color: #a9365c;
+
+    margin: 10px 0 30px;
+}
+
+.message-text {
+    max-width: 600px;
+
+    margin: auto;
+
+    color: #765d67;
+
+    line-height: 1.9;
+}
+
+.message-text p {
+    margin-bottom: 18px;
+}
+
+.final-message {
+    color: #bd3e66;
+
+    font-weight: 600;
+}
+
+.signature {
+    margin-top: 40px;
+
+    color: #8c6c77;
+
+    font-size: 14px;
+}
+
+.signature span {
+    font-family: "Dancing Script", cursive;
+
+    font-size: 30px;
+
+    color: #bd3e66;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background: #3b202b;
+
+    color: #f9dce5;
+}
+
+.footer-heart {
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+footer p {
+    font-family: "Dancing Script", cursive;
+
+    font-size: 28px;
+}
+
+footer small {
+    display: block;
+
+    margin-top: 8px;
+
+    opacity: 0.6;
+}
+
+
+/* =========================
+   RESPONSIVO - TABLET
+========================= */
+
+@media (max-width: 850px) {
+
+    .counter {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .media-card img,
+    .media-card video {
+        height: 400px;
+    }
+
+
+    /* Timeline */
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even),
+    .timeline-item:nth-child(odd) {
+        width: 100%;
+
+        left: 0;
+
+        text-align: left;
+
+        padding-left: 60px;
+
+        padding-right: 0;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: -2px;
+
+        right: auto;
+    }
+
+}
+
+
+/* =========================
+   RESPONSIVO - CELULAR
+========================= */
+
+@media (max-width: 550px) {
+
+    .hero {
+        padding: 30px 18px;
+    }
+
+    .hero h1 {
+        font-size: 85px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+    }
+
+    .section {
+        padding: 80px 18px;
+    }
+
+    .section h2 {
+        font-size: 45px;
+    }
+
+    .counter {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .counter-box {
+        padding: 20px 8px;
+    }
+
+    .counter-box span {
+        font-size: 27px;
+    }
+
+    .date-card {
+        width: 100%;
+
+        justify-content: center;
+
+        text-align: left;
+    }
+
+    .quote-section {
+        padding: 90px 20px;
+    }
+
+    .quote-content p {
+        font-size: 38px;
+    }
+
+    .message-section {
+        padding: 80px 18px;
+    }
+
+    .message-card {
+        padding: 40px 22px;
+    }
+
+    .message-card h2 {
+        font-size: 40px;
+    }
+
+    .media-card img,
+    .media-card video {
+        height: 300px;
+    }
+
+    .timeline-card {
+        padding: 20px;
+    }
+
+    footer p {
+        font-size: 25px;
+    }
+
+}
+
+
+/* =========================
+   TELAS MUITO PEQUENAS
+========================= */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 70px;
+    }
+
+    .counter-box span {
+        font-size: 23px;
+    }
+
+    .counter-box small {
+        font-size: 11px;
+    }
+
+    .date-card {
+        padding: 15px;
+    }
+
+}
