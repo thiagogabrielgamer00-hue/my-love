@@ -216,7 +216,7 @@ function criarCoracao() {
     */
 
     const tamanho =
-        Math.random() * 18 + 10;
+        Math.random() * 19 + 11;
 
     heart.style.fontSize =
         `${tamanho}px`;
@@ -235,7 +235,7 @@ function criarCoracao() {
     */
 
     const duracao =
-        Math.random() * 8 + 7;
+        Math.random() * 9 + 8;
 
     heart.style.animationDuration =
         `${duracao}s`;
