@@ -13,6 +13,7 @@ body {
     background: #fff7f9;
     color: #3d2730;
     overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
 }
 
 
@@ -90,6 +91,8 @@ body {
             #fff1f5,
             #fff9fb
         );
+
+    transition: background 0.4s ease;
 }
 
 .hero-content {
@@ -275,7 +278,10 @@ body {
 
     border: 1px solid #f5dfe6;
 
-    transition: 0.3s;
+    transition:
+        0.3s,
+        background 0.4s ease,
+        border-color 0.4s ease;
 }
 
 .counter-box:hover {
@@ -315,6 +321,10 @@ body {
         0 10px 30px rgba(120, 60, 80, 0.07);
 
     text-align: left;
+
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .date-card span {
@@ -419,7 +429,8 @@ body {
 
     transition:
         transform 0.4s ease,
-        box-shadow 0.4s ease;
+        box-shadow 0.4s ease,
+        background 0.4s ease;
 
     opacity: 1;
 }
@@ -442,6 +453,10 @@ body {
     object-fit: cover;
 
     background: #1f1519;
+}
+
+.media-card img {
+    cursor: zoom-in;
 }
 
 .media-card video {
@@ -549,6 +564,8 @@ body {
     border: 2px solid #e7a5b8;
 
     z-index: 2;
+
+    transition: background 0.4s ease;
 }
 
 .timeline-item:nth-child(odd) .timeline-dot {
@@ -568,6 +585,10 @@ body {
 
     box-shadow:
         0 10px 30px rgba(120, 60, 80, 0.08);
+
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .timeline-date {
@@ -603,6 +624,8 @@ body {
     padding: 120px 25px;
 
     background: #fff0f4;
+
+    transition: background 0.4s ease;
 }
 
 .message-card {
@@ -620,6 +643,10 @@ body {
 
     box-shadow:
         0 20px 60px rgba(120, 60, 80, 0.1);
+
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .message-icon {
@@ -687,6 +714,8 @@ footer {
     background: #3b202b;
 
     color: #f9dce5;
+
+    transition: background 0.4s ease;
 }
 
 .footer-heart {
@@ -711,6 +740,502 @@ footer small {
 
 
 /* =========================
+   CONTROLES FLUTUANTES
+========================= */
+
+.floating-controls {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+
+    gap: 10px;
+
+    z-index: 9999;
+}
+
+.control-button {
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    color: #bd3e66;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(80, 30, 50, 0.15);
+
+    transition:
+        0.3s,
+        background 0.4s ease;
+}
+
+.control-button:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+
+/* =========================
+   PLAYER DE MÚSICA
+========================= */
+
+.music-player {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: 330px;
+
+    padding: 20px;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    box-shadow:
+        0 20px 60px rgba(80, 30, 50, 0.2);
+
+    z-index: 9998;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background 0.4s ease;
+}
+
+.music-player.open {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.music-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.music-header div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.music-label {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #bd3e66;
+
+    font-weight: 700;
+}
+
+.music-header strong {
+    color: #713447;
+
+    font-size: 14px;
+}
+
+.music-close {
+    border: none;
+
+    background: transparent;
+
+    color: #bd3e66;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+.music-controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 15px 0;
+}
+
+.music-controls button {
+    border: none;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #f8dce5;
+
+    color: #bd3e66;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.music-controls button:hover {
+    transform: scale(1.08);
+}
+
+.music-controls .play-button {
+    width: 52px;
+    height: 52px;
+
+    background: #bd3e66;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+.music-progress {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 10px;
+
+    color: #876b74;
+}
+
+#music-progress {
+    flex: 1;
+
+    accent-color: #bd3e66;
+
+    cursor: pointer;
+}
+
+.music-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-top: 15px;
+}
+
+.song-button {
+    border: none;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    background: #fff1f5;
+
+    color: #765963;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+.song-button:hover,
+.song-button.active {
+    background: #bd3e66;
+
+    color: white;
+}
+
+
+/* =========================
+   GALERIA AMPLIADA
+========================= */
+
+.image-modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(15, 8, 12, 0.94);
+
+    z-index: 10000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.image-modal.open {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.image-modal img {
+    max-width: 85vw;
+
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 20px 80px rgba(0, 0, 0, 0.5);
+
+    transform: scale(0.9);
+
+    transition:
+        transform 0.3s ease;
+}
+
+.image-modal.open img {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+
+    top: 20px;
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 35px;
+
+    cursor: pointer;
+
+    z-index: 2;
+
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+
+    transform: scale(1.08);
+}
+
+.modal-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    z-index: 2;
+}
+
+.modal-arrow:hover {
+    background: rgba(255, 255, 255, 0.25);
+
+    transform: translateY(-50%) scale(1.08);
+}
+
+.modal-prev {
+    left: 25px;
+}
+
+.modal-next {
+    right: 25px;
+}
+
+.modal-counter {
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-size: 13px;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+}
+
+
+/* =========================
+   TEMA ESCURO
+========================= */
+
+body.dark-mode {
+    background: #171116;
+
+    color: #f4e9ed;
+}
+
+body.dark-mode .hero {
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(189, 62, 102, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(150, 50, 90, 0.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #21151c,
+            #171116
+        );
+}
+
+body.dark-mode .hero-text,
+body.dark-mode .section-description {
+    color: #c7afb7;
+}
+
+body.dark-mode .section h2 {
+    color: #e66f95;
+}
+
+body.dark-mode .counter-box,
+body.dark-mode .date-card,
+body.dark-mode .timeline-card,
+body.dark-mode .message-card {
+    background: #241921;
+
+    border-color: #3d2933;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .counter-box small,
+body.dark-mode .date-card strong,
+body.dark-mode .media-caption p,
+body.dark-mode .timeline-card p,
+body.dark-mode .message-text {
+    color: #bca7af;
+}
+
+body.dark-mode .timeline-card h3 {
+    color: #f0d5de;
+}
+
+body.dark-mode .date-card p,
+body.dark-mode .media-caption h3,
+body.dark-mode .message-card h2 {
+    color: #e66f95;
+}
+
+body.dark-mode .message-section {
+    background: #1d141a;
+}
+
+body.dark-mode footer {
+    background: #0d080b;
+}
+
+body.dark-mode .music-player {
+    background: #241921;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+body.dark-mode .music-header strong {
+    color: #f0d5de;
+}
+
+body.dark-mode .song-button {
+    background: #34232c;
+
+    color: #d9c2ca;
+}
+
+body.dark-mode .song-button:hover,
+body.dark-mode .song-button.active {
+    background: #bd3e66;
+
+    color: white;
+}
+
+body.dark-mode .control-button {
+    background: #291c23;
+
+    color: #f08aaa;
+}
+
+body.dark-mode .timeline-dot {
+    background: #241921;
+}
+
+
+/* =========================
    RESPONSIVO - TABLET
 ========================= */
 
@@ -729,9 +1254,6 @@ footer small {
     .media-card video {
         height: 400px;
     }
-
-
-    /* Timeline */
 
     .timeline::before {
         left: 20px;
@@ -757,7 +1279,6 @@ footer small {
 
         right: auto;
     }
-
 }
 
 
@@ -843,6 +1364,66 @@ footer small {
         font-size: 25px;
     }
 
+
+    /* Controles */
+
+    .floating-controls {
+        top: 12px;
+        right: 12px;
+    }
+
+    .control-button {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+
+    /* Player */
+
+    .music-player {
+        left: 12px;
+        right: 12px;
+
+        bottom: 12px;
+
+        width: auto;
+    }
+
+
+    /* Modal */
+
+    .image-modal img {
+        max-width: 92vw;
+
+        max-height: 78vh;
+    }
+
+    .modal-arrow {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+    .modal-prev {
+        left: 10px;
+    }
+
+    .modal-next {
+        right: 10px;
+    }
+
+    .modal-close {
+        top: 12px;
+        right: 12px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 28px;
+    }
 }
 
 

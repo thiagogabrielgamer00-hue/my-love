@@ -26,6 +26,95 @@
 
     <div class="hearts-container"></div>
 
+    <!-- BOTÕES FLUTUANTES -->
+
+    <div class="floating-controls">
+
+        <button id="theme-toggle" class="control-button" title="Mudar tema">
+            🌙
+        </button>
+
+        <button id="music-toggle" class="control-button" title="Abrir música">
+            🎵
+        </button>
+
+    </div>
+
+
+    <!-- PLAYER DE MÚSICA -->
+
+    <div id="music-player" class="music-player">
+
+        <div class="music-header">
+
+            <div>
+                <span class="music-label">🎵 NOSSA MÚSICA</span>
+                <strong id="music-title">Música 1</strong>
+            </div>
+
+            <button id="close-music" class="music-close">
+                ×
+            </button>
+
+        </div>
+
+        <audio id="audio-player" preload="metadata"></audio>
+
+        <div class="music-controls">
+
+            <button id="previous-song">
+                ⏮
+            </button>
+
+            <button id="play-song" class="play-button">
+                ▶
+            </button>
+
+            <button id="next-song">
+                ⏭
+            </button>
+
+        </div>
+
+        <div class="music-progress">
+
+            <span id="current-time">
+                0:00
+            </span>
+
+            <input
+                type="range"
+                id="music-progress"
+                min="0"
+                max="100"
+                value="0"
+            >
+
+            <span id="duration">
+                0:00
+            </span>
+
+        </div>
+
+        <div class="music-list">
+
+            <button class="song-button active" data-song="0">
+                🎵 Música 1
+            </button>
+
+            <button class="song-button" data-song="1">
+                🎵 Música 2
+            </button>
+
+            <button class="song-button" data-song="2">
+                🎵 Música 3
+            </button>
+
+        </div>
+
+    </div>
+
+
     <!-- INÍCIO -->
 
     <header class="hero">
@@ -467,26 +556,16 @@
             </div>
 
 
-            <!-- =========================
-                 VÍDEOS
-            ========================== -->
-
-
-            <!-- VÍDEO 1 -->
+            <!-- VÍDEOS -->
 
             <div class="media-card video-card">
 
-                <video
-                    controls
-                    preload="metadata"
-                >
+                <video controls preload="metadata">
 
                     <source
                         src="fotos/video1.mp4"
                         type="video/mp4"
                     >
-
-                    Seu navegador não suporta vídeos.
 
                 </video>
 
@@ -509,14 +588,9 @@
             </div>
 
 
-            <!-- VÍDEO 2 -->
-
             <div class="media-card video-card">
 
-                <video
-                    controls
-                    preload="metadata"
-                >
+                <video controls preload="metadata">
 
                     <source
                         src="fotos/video2.mp4"
@@ -544,14 +618,9 @@
             </div>
 
 
-            <!-- VÍDEO 3 -->
-
             <div class="media-card video-card">
 
-                <video
-                    controls
-                    preload="metadata"
-                >
+                <video controls preload="metadata">
 
                     <source
                         src="fotos/video3.mp4"
@@ -579,14 +648,9 @@
             </div>
 
 
-            <!-- VÍDEO 4 -->
-
             <div class="media-card video-card">
 
-                <video
-                    controls
-                    preload="metadata"
-                >
+                <video controls preload="metadata">
 
                     <source
                         src="fotos/video4.mp4"
@@ -614,14 +678,9 @@
             </div>
 
 
-            <!-- VÍDEO 5 -->
-
             <div class="media-card video-card">
 
-                <video
-                    controls
-                    preload="metadata"
-                >
+                <video controls preload="metadata">
 
                     <source
                         src="fotos/video5.mp4"
@@ -649,14 +708,9 @@
             </div>
 
 
-            <!-- VÍDEO 6 -->
-
             <div class="media-card video-card">
 
-                <video
-                    controls
-                    preload="metadata"
-                >
+                <video controls preload="metadata">
 
                     <source
                         src="fotos/video6.mp4"
@@ -688,6 +742,47 @@
     </section>
 
 
+    <!-- MODAL DAS FOTOS -->
+
+    <div id="image-modal" class="image-modal">
+
+        <button
+            id="modal-close"
+            class="modal-close"
+            aria-label="Fechar"
+        >
+            ×
+        </button>
+
+        <button
+            id="modal-prev"
+            class="modal-arrow modal-prev"
+            aria-label="Foto anterior"
+        >
+            ❮
+        </button>
+
+        <img
+            id="modal-image"
+            src=""
+            alt="Foto ampliada"
+        >
+
+        <button
+            id="modal-next"
+            class="modal-arrow modal-next"
+            aria-label="Próxima foto"
+        >
+            ❯
+        </button>
+
+        <div id="modal-counter" class="modal-counter">
+            1 / 10
+        </div>
+
+    </div>
+
+
     <!-- LINHA DO TEMPO -->
 
     <section class="section timeline-section">
@@ -702,7 +797,6 @@
 
 
         <div class="timeline">
-
 
             <div class="timeline-item">
 
@@ -746,7 +840,7 @@
                     </h3>
 
                     <p>
-                        esse foi o dia que começamos a conversar 
+                        esse foi o dia que começamos a conversar
                     </p>
 
                 </div>
@@ -798,14 +892,13 @@
                     <p>
                         E ainda temos muitos momentos
                         para viver juntos, é estranho pensar que demoramos 4 meses pra oficializar o namoro
-                         mas tambem é incrivel, eu não poderia estar mais feliz do que estou agora
+                        mas tambem é incrivel, eu não poderia estar mais feliz do que estou agora
                         eu te amo muito
                     </p>
 
                 </div>
 
             </div>
-
 
         </div>
 
