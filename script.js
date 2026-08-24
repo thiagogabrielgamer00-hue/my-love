@@ -1,5 +1,5 @@
 /* =====================================
-   CONFIGURAÇÃO
+   CONFIGURAÇÃO DA DATA
 ===================================== */
 
 const dataInicio = new Date(
@@ -46,19 +46,28 @@ function atualizarContador() {
 
 
     if (segundos < 0) {
+
         segundos += 60;
         minutos--;
+
     }
+
 
     if (minutos < 0) {
+
         minutos += 60;
         horas--;
+
     }
 
+
     if (horas < 0) {
+
         horas += 24;
         dias--;
+
     }
+
 
     if (dias < 0) {
 
@@ -72,13 +81,15 @@ function atualizarContador() {
         dias += ultimoDiaMesAnterior;
 
         meses--;
+
     }
+
 
     if (meses < 0) {
 
         meses += 12;
-
         anos--;
+
     }
 
 
@@ -99,7 +110,9 @@ function atualizarContador() {
 
     document.getElementById("seconds").textContent =
         segundos;
+
 }
+
 
 atualizarContador();
 
@@ -110,7 +123,7 @@ setInterval(
 
 
 /* =====================================
-   DATA
+   DATA FORMATADA
 ===================================== */
 
 function mostrarData() {
@@ -130,6 +143,7 @@ function mostrarData() {
     document.getElementById(
         "meeting-date"
     ).textContent = dataFormatada;
+
 }
 
 mostrarData();
@@ -156,14 +170,17 @@ function criarCoracao() {
 
     heart.textContent = "♥";
 
+
     const tamanho =
         Math.random() * 19 + 11;
 
     heart.style.fontSize =
         `${tamanho}px`;
 
+
     heart.style.left =
         `${Math.random() * 100}%`;
+
 
     const duracao =
         Math.random() * 9 + 8;
@@ -171,18 +188,22 @@ function criarCoracao() {
     heart.style.animationDuration =
         `${duracao}s`;
 
+
     heart.style.animationDelay =
         `${Math.random() * 2}s`;
+
 
     heartsContainer.appendChild(
         heart
     );
+
 
     setTimeout(() => {
 
         heart.remove();
 
     }, (duracao + 2) * 1000);
+
 }
 
 
@@ -222,6 +243,7 @@ const observer =
                         observer.unobserve(
                             entry.target
                         );
+
                     }
 
                 }
@@ -252,7 +274,7 @@ elementos.forEach(
 
 
 /* =====================================
-   TEMA ESCURO / CLARO
+   TEMA ESCURO
 ===================================== */
 
 const themeToggle =
@@ -261,38 +283,32 @@ const themeToggle =
     );
 
 
-function atualizarIconeTema() {
+function aplicarTema() {
 
-    const escuro =
-        document.body.classList.contains(
-            "dark-mode"
+    const tema =
+        localStorage.getItem(
+            "tema"
         );
 
-    themeToggle.textContent =
-        escuro ? "☀️" : "🌙";
+    if (tema === "dark") {
 
-    themeToggle.title =
-        escuro
-            ? "Mudar para tema claro"
-            : "Mudar para tema escuro";
+        document.body.classList.add(
+            "dark"
+        );
+
+        themeToggle.textContent = "☀️";
+
+    } else {
+
+        document.body.classList.remove(
+            "dark"
+        );
+
+        themeToggle.textContent = "🌙";
+
+    }
+
 }
-
-
-const temaSalvo =
-    localStorage.getItem(
-        "tema"
-    );
-
-
-if (temaSalvo === "escuro") {
-
-    document.body.classList.add(
-        "dark-mode"
-    );
-}
-
-
-atualizarIconeTema();
 
 
 themeToggle.addEventListener(
@@ -300,20 +316,126 @@ themeToggle.addEventListener(
     () => {
 
         document.body.classList.toggle(
-            "dark-mode"
+            "dark"
         );
 
         const escuro =
             document.body.classList.contains(
-                "dark-mode"
+                "dark"
             );
 
         localStorage.setItem(
             "tema",
-            escuro ? "escuro" : "claro"
+            escuro ? "dark" : "light"
         );
 
-        atualizarIconeTema();
+        aplicarTema();
+
+    }
+);
+
+
+aplicarTema();
+
+
+/* =====================================
+   GALERIA - FOTO AMPLIADA
+===================================== */
+
+const imageModal =
+    document.getElementById(
+        "image-modal"
+    );
+
+const modalImage =
+    document.getElementById(
+        "modal-image"
+    );
+
+const closeModal =
+    document.getElementById(
+        "close-modal"
+    );
+
+
+const galleryImages =
+    document.querySelectorAll(
+        ".media-card img"
+    );
+
+
+galleryImages.forEach(
+    (image) => {
+
+        image.addEventListener(
+            "click",
+            () => {
+
+                modalImage.src =
+                    image.src;
+
+                modalImage.alt =
+                    image.alt;
+
+                imageModal.classList.add(
+                    "active"
+                );
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
+    }
+);
+
+
+function fecharModal() {
+
+    imageModal.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    fecharModal
+);
+
+
+imageModal.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target === imageModal
+        ) {
+
+            fecharModal();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            fecharModal();
+
+        }
 
     }
 );
@@ -326,33 +448,46 @@ themeToggle.addEventListener(
 const musicas = [
 
     {
-        nome: "Sol e Lua",
-        arquivo: "musicas/musica1.mp3"
+        arquivo: "musicas/musica1.mp3",
+        nome: "Botas Verdes de neon"
     },
 
     {
-        nome: "Botas verdes de neon",
-        arquivo: "musicas/musica2.mp3"
+        arquivo: "musicas/musica2.mp3",
+        nome: "Sol e Lua"
     },
 
     {
-        nome: "gato cerveja",
-        arquivo: "musicas/musica3.mp3"
+        arquivo: "musicas/musica3.mp3",
+        nome: "Gato Cerveja"
     }
 
 ];
 
 
+const audio =
+    new Audio();
+
+
+audio.volume = 0.7;
+
+
 let musicaAtual = 0;
 
-const audio =
-    document.getElementById(
-        "audio-player"
-    );
 
 const musicPlayer =
+    document.querySelector(
+        ".music-player"
+    );
+
+const musicOpen =
     document.getElementById(
-        "music-player"
+        "music-open"
+    );
+
+const musicClose =
+    document.getElementById(
+        "music-close"
     );
 
 const musicTitle =
@@ -360,14 +495,29 @@ const musicTitle =
         "music-title"
     );
 
-const playButton =
+const playPause =
     document.getElementById(
-        "play-song"
+        "play-pause"
+    );
+
+const prevSong =
+    document.getElementById(
+        "prev-song"
+    );
+
+const nextSong =
+    document.getElementById(
+        "next-song"
     );
 
 const progress =
     document.getElementById(
-        "music-progress"
+        "progress"
+    );
+
+const volume =
+    document.getElementById(
+        "volume"
     );
 
 const currentTime =
@@ -380,36 +530,20 @@ const duration =
         "duration"
     );
 
-const songButtons =
+const musicDisc =
+    document.getElementById(
+        "music-disc"
+    );
+
+const songOptions =
     document.querySelectorAll(
-        ".song-button"
+        ".song-option"
     );
 
 
-function formatarTempo(segundos) {
-
-    if (
-        isNaN(segundos) ||
-        !isFinite(segundos)
-    ) {
-        return "0:00";
-    }
-
-    const minutos =
-        Math.floor(
-            segundos / 60
-        );
-
-    const segundosRestantes =
-        Math.floor(
-            segundos % 60
-        )
-        .toString()
-        .padStart(2, "0");
-
-    return `${minutos}:${segundosRestantes}`;
-}
-
+/* =====================================
+   CARREGAR MÚSICA
+===================================== */
 
 function carregarMusica(
     indice,
@@ -418,118 +552,212 @@ function carregarMusica(
 
     musicaAtual = indice;
 
-    const musica =
-        musicas[musicaAtual];
-
     audio.src =
-        musica.arquivo;
+        musicas[indice].arquivo;
 
     musicTitle.textContent =
-        musica.nome;
+        musicas[indice].nome;
 
-    songButtons.forEach(
-        (button, index) => {
 
-            button.classList.toggle(
+    songOptions.forEach(
+        (option, index) => {
+
+            option.classList.toggle(
                 "active",
-                index === musicaAtual
+                index === indice
             );
 
         }
     );
 
-    progress.value = 0;
 
-    currentTime.textContent =
-        "0:00";
+    audio.load();
 
-    duration.textContent =
-        "0:00";
 
     if (tocar) {
 
-        audio.play()
-            .then(() => {
+        const promessa =
+            audio.play();
 
-                playButton.textContent =
-                    "⏸";
+        if (
+            promessa !== undefined
+        ) {
 
-            })
-            .catch(() => {
+            promessa.catch(
+                () => {
 
-                playButton.textContent =
-                    "▶";
+                    console.log(
+                        "O navegador bloqueou a reprodução automática."
+                    );
 
-            });
+                }
+            );
 
-    } else {
+        }
 
-        playButton.textContent =
-            "▶";
     }
+
 }
 
 
-carregarMusica(0);
+/* =====================================
+   PLAY / PAUSE
+===================================== */
 
+function alternarMusica() {
 
-playButton.addEventListener(
-    "click",
-    () => {
+    if (
+        audio.paused
+    ) {
 
-        if (audio.paused) {
+        audio.play()
+            .then(
+                () => {
 
-            audio.play()
-                .then(() => {
+                    atualizarBotao();
 
-                    playButton.textContent =
-                        "⏸";
+                }
+            )
+            .catch(
+                () => {
 
-                })
-                .catch(() => {
+                    console.log(
+                        "Não foi possível reproduzir a música."
+                    );
 
-                    playButton.textContent =
-                        "▶";
+                }
+            );
 
-                });
+    } else {
 
-        } else {
+        audio.pause();
 
-            audio.pause();
-
-            playButton.textContent =
-                "▶";
-        }
+        atualizarBotao();
 
     }
+
+}
+
+
+playPause.addEventListener(
+    "click",
+    alternarMusica
 );
 
 
-document.getElementById(
-    "previous-song"
-).addEventListener(
-    "click",
-    () => {
+/* =====================================
+   ATUALIZAR BOTÃO
+===================================== */
 
-        musicaAtual--;
+function atualizarBotao() {
 
-        if (musicaAtual < 0) {
-            musicaAtual =
-                musicas.length - 1;
-        }
+    if (
+        audio.paused
+    ) {
 
-        carregarMusica(
-            musicaAtual,
-            true
+        playPause.textContent =
+            "▶";
+
+        musicDisc.classList.remove(
+            "playing"
+        );
+
+    } else {
+
+        playPause.textContent =
+            "❚❚";
+
+        musicDisc.classList.add(
+            "playing"
+        );
+
+    }
+
+}
+
+
+audio.addEventListener(
+    "play",
+    atualizarBotao
+);
+
+audio.addEventListener(
+    "pause",
+    atualizarBotao
+);
+
+
+/* =====================================
+   TROCAR MÚSICA
+===================================== */
+
+function trocarMusica(
+    indice
+) {
+
+    carregarMusica(
+        indice,
+        true
+    );
+
+}
+
+
+songOptions.forEach(
+    (option) => {
+
+        option.addEventListener(
+            "click",
+            () => {
+
+                const indice =
+                    Number(
+                        option.dataset.song
+                    );
+
+                trocarMusica(
+                    indice
+                );
+
+            }
         );
 
     }
 );
 
 
-document.getElementById(
-    "next-song"
-).addEventListener(
+/* =====================================
+   ANTERIOR
+===================================== */
+
+prevSong.addEventListener(
+    "click",
+    () => {
+
+        musicaAtual--;
+
+        if (
+            musicaAtual < 0
+        ) {
+
+            musicaAtual =
+                musicas.length - 1;
+
+        }
+
+        trocarMusica(
+            musicaAtual
+        );
+
+    }
+);
+
+
+/* =====================================
+   PRÓXIMA
+===================================== */
+
+nextSong.addEventListener(
     "click",
     () => {
 
@@ -539,40 +767,86 @@ document.getElementById(
             musicaAtual >=
             musicas.length
         ) {
+
             musicaAtual = 0;
+
         }
 
-        carregarMusica(
-            musicaAtual,
-            true
+        trocarMusica(
+            musicaAtual
         );
 
     }
 );
 
 
-songButtons.forEach(
-    (button) => {
+/* =====================================
+   QUANDO A MÚSICA TERMINAR
+===================================== */
 
-        button.addEventListener(
-            "click",
-            () => {
+audio.addEventListener(
+    "ended",
+    () => {
 
-                const indice =
-                    Number(
-                        button.dataset.song
-                    );
+        musicaAtual++;
 
-                carregarMusica(
-                    indice,
-                    true
-                );
+        if (
+            musicaAtual >=
+            musicas.length
+        ) {
 
-            }
+            musicaAtual = 0;
+
+        }
+
+        trocarMusica(
+            musicaAtual
         );
 
     }
 );
+
+
+/* =====================================
+   TEMPO
+===================================== */
+
+function formatarTempo(
+    segundos
+) {
+
+    if (
+        isNaN(segundos)
+    ) {
+
+        return "0:00";
+
+    }
+
+
+    const minutos =
+        Math.floor(
+            segundos / 60
+        );
+
+    const segundosRestantes =
+        Math.floor(
+            segundos % 60
+        );
+
+
+    return (
+        minutos +
+        ":" +
+        String(
+            segundosRestantes
+        ).padStart(
+            2,
+            "0"
+        )
+    );
+
+}
 
 
 audio.addEventListener(
@@ -592,9 +866,14 @@ audio.addEventListener(
     "timeupdate",
     () => {
 
+        currentTime.textContent =
+            formatarTempo(
+                audio.currentTime
+            );
+
+
         if (
-            audio.duration &&
-            isFinite(audio.duration)
+            audio.duration
         ) {
 
             progress.value =
@@ -605,28 +884,28 @@ audio.addEventListener(
 
         }
 
-        currentTime.textContent =
-            formatarTempo(
-                audio.currentTime
-            );
-
     }
 );
 
+
+/* =====================================
+   BARRA DE PROGRESSO
+===================================== */
 
 progress.addEventListener(
     "input",
     () => {
 
         if (
-            audio.duration &&
-            isFinite(audio.duration)
+            audio.duration
         ) {
 
             audio.currentTime =
                 (
-                    progress.value / 100
-                ) * audio.duration;
+                    progress.value /
+                    100
+                ) *
+                audio.duration;
 
         }
 
@@ -634,81 +913,35 @@ progress.addEventListener(
 );
 
 
-audio.addEventListener(
-    "play",
+/* =====================================
+   VOLUME
+===================================== */
+
+volume.addEventListener(
+    "input",
     () => {
 
-        playButton.textContent =
-            "⏸";
+        audio.volume =
+            volume.value;
 
     }
 );
 
 
-audio.addEventListener(
-    "pause",
-    () => {
+/* =====================================
+   FECHAR PLAYER
+===================================== */
 
-        playButton.textContent =
-            "▶";
-
-    }
-);
-
-
-/*
-   Quando uma música termina,
-   passa automaticamente para a próxima.
-*/
-
-audio.addEventListener(
-    "ended",
-    () => {
-
-        musicaAtual++;
-
-        if (
-            musicaAtual >=
-            musicas.length
-        ) {
-            musicaAtual = 0;
-        }
-
-        carregarMusica(
-            musicaAtual,
-            true
-        );
-
-    }
-);
-
-
-/* Abrir player */
-
-document.getElementById(
-    "music-toggle"
-).addEventListener(
+musicClose.addEventListener(
     "click",
     () => {
 
-        musicPlayer.classList.toggle(
-            "open"
+        musicPlayer.classList.add(
+            "hidden"
         );
 
-    }
-);
-
-
-/* Fechar player */
-
-document.getElementById(
-    "close-music"
-).addEventListener(
-    "click",
-    () => {
-
-        musicPlayer.classList.remove(
-            "open"
+        musicOpen.classList.add(
+            "visible"
         );
 
     }
@@ -716,228 +949,30 @@ document.getElementById(
 
 
 /* =====================================
-   GALERIA AMPLIADA
+   ABRIR PLAYER
 ===================================== */
 
-const fotos =
-    Array.from(
-        document.querySelectorAll(
-            ".gallery .media-card img"
-        )
-    );
+musicOpen.addEventListener(
+    "click",
+    () => {
 
+        musicPlayer.classList.remove(
+            "hidden"
+        );
 
-const imageModal =
-    document.getElementById(
-        "image-modal"
-    );
-
-const modalImage =
-    document.getElementById(
-        "modal-image"
-    );
-
-const modalCounter =
-    document.getElementById(
-        "modal-counter"
-    );
-
-const modalClose =
-    document.getElementById(
-        "modal-close"
-    );
-
-const modalPrev =
-    document.getElementById(
-        "modal-prev"
-    );
-
-const modalNext =
-    document.getElementById(
-        "modal-next"
-    );
-
-
-let fotoAtual = 0;
-
-
-function mostrarFoto(indice) {
-
-    if (!fotos.length) {
-        return;
-    }
-
-    if (indice < 0) {
-        indice =
-            fotos.length - 1;
-    }
-
-    if (
-        indice >=
-        fotos.length
-    ) {
-        indice = 0;
-    }
-
-    fotoAtual = indice;
-
-    modalImage.src =
-        fotos[fotoAtual].src;
-
-    modalImage.alt =
-        fotos[fotoAtual].alt;
-
-    modalCounter.textContent =
-        `${fotoAtual + 1} / ${fotos.length}`;
-
-}
-
-
-function abrirFoto(indice) {
-
-    mostrarFoto(indice);
-
-    imageModal.classList.add(
-        "open"
-    );
-
-    document.body.style.overflow =
-        "hidden";
-}
-
-
-function fecharFoto() {
-
-    imageModal.classList.remove(
-        "open"
-    );
-
-    document.body.style.overflow =
-        "";
-}
-
-
-fotos.forEach(
-    (foto, indice) => {
-
-        foto.addEventListener(
-            "click",
-            () => {
-
-                abrirFoto(indice);
-
-            }
+        musicOpen.classList.remove(
+            "visible"
         );
 
     }
 );
 
 
-modalClose.addEventListener(
-    "click",
-    fecharFoto
-);
+/* =====================================
+   INICIALIZAÇÃO
+===================================== */
 
-
-modalPrev.addEventListener(
-    "click",
-    (event) => {
-
-        event.stopPropagation();
-
-        mostrarFoto(
-            fotoAtual - 1
-        );
-
-    }
-);
-
-
-modalNext.addEventListener(
-    "click",
-    (event) => {
-
-        event.stopPropagation();
-
-        mostrarFoto(
-            fotoAtual + 1
-        );
-
-    }
-);
-
-
-/*
-   Clicar fora da foto fecha.
-*/
-
-imageModal.addEventListener(
-    "click",
-    (event) => {
-
-        if (
-            event.target ===
-            imageModal
-        ) {
-
-            fecharFoto();
-
-        }
-
-    }
-);
-
-
-/*
-   Teclado:
-
-   ESC = fechar
-   ← = anterior
-   → = próxima
-*/
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            !imageModal.classList.contains(
-                "open"
-            )
-        ) {
-            return;
-        }
-
-        if (
-            event.key ===
-            "Escape"
-        ) {
-
-            fecharFoto();
-
-        }
-
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            mostrarFoto(
-                fotoAtual - 1
-            );
-
-        }
-
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
-            mostrarFoto(
-                fotoAtual + 1
-            );
-
-        }
-
-    }
+carregarMusica(
+    0,
+    false
 );
