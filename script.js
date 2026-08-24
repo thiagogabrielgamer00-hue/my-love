@@ -449,7 +449,7 @@ const musicas = [
 
     {
         arquivo: "musicas/musica1.mp3",
-        nome: "sol e lua"
+        nome: "Sol e Lua"
     },
 
     {
