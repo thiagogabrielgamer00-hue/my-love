@@ -449,12 +449,12 @@ const musicas = [
 
     {
         arquivo: "musicas/musica1.mp3",
-        nome: "Botas Verde Neon"
+        nome: "Sol e lia"
     },
 
     {
         arquivo: "musicas/musica2.mp3",
-        nome: "Sol e Lua"
+        nome: "Botas Verde de neon"
     },
 
     {
