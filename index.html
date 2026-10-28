@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Eu Te Amo ❤️</title>
+
+    <link rel="stylesheet" href="style.css?v=20261028-3">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Estilo das abas embutido para aparecer mesmo com CSS antigo em cache -->
+    <style>
+
+/* ABAS INTEGRADAS: tema claro e escuro */
+.gallery-section .gallery-tabs {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; width: fit-content; max-width: 100%; margin: 38px auto 18px;
+  padding: 8px; border-radius: 25px;
+  background: #fae8ef; border: 1px solid #f3d3df;
+  box-shadow: 0 12px 35px rgba(158, 61, 96, .09);
+}
+.gallery-section .gallery-tab {
+  appearance: none; -webkit-appearance: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; min-width: 176px; min-height: 57px;
+  padding: 14px 25px; border: 1px solid transparent; border-radius: 19px;
+  background: transparent; color: #98415e;
+  font: 600 16px 'Poppins', sans-serif; line-height: 1.2;
+  letter-spacing: .1px; cursor: pointer;
+  box-shadow: none; transition: color .22s, background .22s, box-shadow .22s, transform .22s;
+}
+.gallery-section .gallery-tab:hover:not(.active) { background: #fff6f9; transform: translateY(-1px); }
+.gallery-section .gallery-tab.active, .gallery-section .gallery-tab[aria-selected="true"] {
+  color: #fff; background: linear-gradient(135deg,#ba3d66,#d75b80);
+  border-color: transparent; box-shadow: 0 7px 20px rgba(170, 46, 92, .25);
+  transform: none;
+}
+.gallery-section .gallery-tab:focus-visible { outline: 3px solid #ed9cb6; outline-offset: 3px; }
+.gallery-section .gallery-tab .tab-symbol { font-size: 21px; line-height: 1; }
+.gallery-section .gallery-tab .tab-name { white-space: nowrap; }
+body.dark .gallery-section .gallery-tabs {
+  background: #291c24; border-color: #4e303d;
+  box-shadow: 0 12px 35px rgba(0,0,0,.19);
+}
+body.dark .gallery-section .gallery-tab { color: #ebadc2; background: transparent; border-color: transparent; }
+body.dark .gallery-section .gallery-tab:hover:not(.active) { background: #38252f; }
+body.dark .gallery-section .gallery-tab.active, body.dark .gallery-section .gallery-tab[aria-selected="true"] {
+  color: white; background: linear-gradient(135deg,#af365e,#cf5279);
+  box-shadow: 0 7px 20px rgba(0,0,0,.27);
+}
+@media (max-width: 490px) {
+  .gallery-section .gallery-tabs { width: 100%; padding: 6px; gap: 5px; border-radius: 21px; }
+  .gallery-section .gallery-tab { flex: 1; min-width: 0; min-height: 52px; padding: 11px 10px; border-radius: 16px; font-size: 14px; }
+  .gallery-section .gallery-tab .tab-symbol { font-size: 19px; }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- CORAÇÕES -->
+
+    <div class="hearts-container"></div>
+
+
+    <!-- BOTÃO TEMA -->
+
+    <button id="theme-toggle" class="theme-toggle" title="Mudar tema">
+        🌙
+    </button>
+
+
+    <!-- PLAYER DE MÚSICA -->
+
+    <div class="music-player">
+
+        <div class="music-top">
+
+            <div class="music-disc" id="music-disc">
+                🎵
+            </div>
+
+            <div class="music-info">
+
+                <span class="music-label">
+                    TOCANDO AGORA
+                </span>
+
+                <strong id="music-title">
+                    Música 1
+                </strong>
+
+            </div>
+
+            <button
+                id="music-close"
+                class="music-close"
+                title="Fechar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="music-progress">
+
+            <span id="current-time">
+                0:00
+            </span>
+
+            <input
+                type="range"
+                id="progress"
+                min="0"
+                max="100"
+                value="0"
+            >
+
+            <span id="duration">
+                0:00
+            </span>
+
+        </div>
+
+
+        <div class="music-controls">
+
+            <button id="prev-song" title="Anterior">
+                ⏮
+            </button>
+
+            <button
+                id="play-pause"
+                class="play-button"
+                title="Reproduzir"
+            >
+                ▶
+            </button>
+
+            <button id="next-song" title="Próxima">
+                ⏭
+            </button>
+
+            <div class="volume-container">
+
+                <span>
+                    🔊
+                </span>
+
+                <input
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.7"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="music-list">
+
+            <button
+                class="song-option active"
+                data-song="0"
+            >
+                <span>01</span>
+
+                <div>
+                    <strong>sol e lua</strong>
+                    <small>Música 1</small>
+                </div>
+
+                <span class="song-icon">
+                    ♪
+                </span>
+            </button>
+
+
+            <button
+                class="song-option"
+                data-song="1"
+            >
+                <span>02</span>
+
+                <div>
+                    <strong>botas verde de neon</strong>
+                    <small>Música 2</small>
+                </div>
+
+                <span class="song-icon">
+                    ♪
+                </span>
+            </button>
+
+
+            <button
+                class="song-option"
+                data-song="2"
+            >
+                <span>03</span>
+
+                <div>
+                    <strong>Gato Cerveja</strong>
+                    <small>Música 3</small>
+                </div>
+
+                <span class="song-icon">
+                    ♪
+                </span>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTÃO PARA REABRIR O PLAYER -->
+
+    <button
+        id="music-open"
+        class="music-open"
+        title="Abrir músicas"
+    >
+        🎵
+    </button>
+
+
+    <!-- INÍCIO -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="heart-icon">
+                ❤️
+            </div>
+
+            <p class="small-title">
+                Nossa história
+            </p>
+
+            <h1>
+                Nós dois
+            </h1>
+
+            <p class="hero-text">
+                Um lugar para guardar nossas
+                lembranças, fotos e momentos especiais.
+            </p>
+
+            <a
+                href="#contador"
+                class="hero-button"
+            >
+                Ver nossa história ↓
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTADOR -->
+
+    <section
+        id="contador"
+        class="section counter-section"
+    >
+
+        <p class="section-subtitle">
+            DESDE O NOSSO PRIMEIRO MOMENTO
+        </p>
+
+        <h2>
+            Juntos há...
+        </h2>
+
+        <div class="counter">
+
+            <div class="counter-box">
+                <span id="years">0</span>
+                <small>anos</small>
+            </div>
+
+            <div class="counter-box">
+                <span id="months">0</span>
+                <small>meses</small>
+            </div>
+
+            <div class="counter-box">
+                <span id="days">0</span>
+                <small>dias</small>
+            </div>
+
+            <div class="counter-box">
+                <span id="hours">0</span>
+                <small>horas</small>
+            </div>
+
+            <div class="counter-box">
+                <span id="minutes">0</span>
+                <small>minutos</small>
+            </div>
+
+            <div class="counter-box">
+                <span id="seconds">0</span>
+                <small>segundos</small>
+            </div>
+
+        </div>
+
+
+        <div class="date-card">
+
+            <span>
+                ❤️
+            </span>
+
+            <div>
+
+                <strong>
+                    Nos conhecemos em
+                </strong>
+
+                <p id="meeting-date">
+                    --
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRASE -->
+
+    <section class="quote-section">
+
+        <div class="quote-content">
+
+            <span class="quote-heart">
+                ♥
+            </span>
+
+            <p>
+                Algumas histórias começam por acaso,
+                mas algumas pessoas fazem a gente
+                querer que elas durem para sempre.
+            </p>
+
+            <span class="quote-line"></span>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALERIA COM ABAS NA PRÓPRIA PÁGINA -->
+    <section class="section gallery-section" id="lembrancas">
+        <p class="section-subtitle">NOSSAS LEMBRANÇAS</p>
+        <h2>Fotos &amp; Vídeos ❤️</h2>
+        <p class="section-description">Todos os nossos momentos especiais em um só lugar.</p>
+
+        <div class="gallery-tabs" role="tablist" aria-label="Escolher álbum">
+            <button type="button" class="gallery-tab active" id="tab-fotos" role="tab" aria-selected="true" aria-controls="galeria-painel" data-type="fotos"><span class="tab-symbol" aria-hidden="true">📸</span><span class="tab-name">Fotos</span></button>
+            <button type="button" class="gallery-tab" id="tab-videos" role="tab" aria-selected="false" aria-controls="galeria-painel" data-type="videos"><span class="tab-symbol" aria-hidden="true">🎬</span><span class="tab-name">Vídeos</span></button>
+        </div>
+        <div id="galeria-painel" role="tabpanel" aria-labelledby="tab-fotos">
+            <div class="album-toolbar">
+                <p id="album-status" aria-live="polite"></p>
+            </div>
+            <div id="album-grid" class="album-grid gallery"></div>
+            <div class="album-pages">
+                <button type="button" id="album-prev">← Anterior</button>
+                <span id="album-page" aria-live="polite"></span>
+                <button type="button" id="album-next">Próxima →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+
+    <section class="section timeline-section">
+
+        <p class="section-subtitle">
+            NOSSA HISTÓRIA
+        </p>
+
+        <h2>
+            Momentos importantes
+        </h2>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot">
+                    ❤️
+                </div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-date">
+                        12/04/2026
+                    </span>
+
+                    <h3>
+                        O começo de tudo
+                    </h3>
+
+                    <p>
+                        O dia em que nossas vidas se cruzaram.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot">
+                    ✨
+                </div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-date">
+                        17/04/2026
+                    </span>
+
+                    <h3>
+                        Quanto tudo começou
+                    </h3>
+
+                    <p>
+                        Esse foi o dia que começamos a conversar.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot">
+                    💕
+                </div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-date">
+                        16/08/2026
+                    </span>
+
+                    <h3>
+                        Mais um momento inesquecível
+                    </h3>
+
+                    <p>
+                        Foi o dia em que me chamaram pra sua casa.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot">
+                    💖
+                </div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-date">
+                        Hoje
+                    </span>
+
+                    <h3>
+                        Nossa história continua...
+                    </h3>
+
+                    <p>
+                        E ainda temos muitos momentos para viver juntos.
+                        É estranho pensar que demoramos 4 meses pra oficializar
+                        o namoro, mas também é incrível. Eu não poderia estar
+                        mais feliz do que estou agora. Eu te amo muito.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENSAGEM -->
+
+    <section class="message-section">
+
+        <div class="message-card">
+
+            <div class="message-icon">
+                💌
+            </div>
+
+            <p class="section-subtitle">
+                UMA MENSAGEM PARA VOCÊ
+            </p>
+
+            <h2>
+                Para a pessoa que faz meus dias melhores
+            </h2>
+
+            <div class="message-text">
+
+                <p>
+                    Eu queria que este pequeno site pudesse guardar tudo aquilo
+                    que sinto e sempre vou atualizar com fotos nossas e vídeos novos.
+                </p>
+
+                <p>
+                    Obrigado por cada conversa, cada risada e cada momento,
+                    e por todos os outros que virão.
+                </p>
+
+                <p>
+                    Espero que possamos continuar criando novas lembranças juntos.
+                </p>
+
+                <p class="final-message">
+                    Que a nossa história ainda tenha muitos capítulos. ❤️
+                </p>
+
+            </div>
+
+            <div class="signature">
+
+                Com carinho,<br>
+
+                <span>
+                    Seu amor ❤️
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <div class="footer-heart">
+            ❤️
+        </div>
+
+        <p>
+            Feito com amor para nós dois.
+        </p>
+
+        <small>
+            Eu Te Amo minha Princesa
+        </small>
+
+    </footer>
+
+
+    <!-- MODAL DA FOTO -->
+
+    <div
+        id="image-modal"
+        class="image-modal"
+    >
+
+        <button
+            id="close-modal"
+            class="close-modal"
+        >
+            ×
+        </button>
+
+        <img
+            id="modal-image"
+            src=""
+            alt="Foto ampliada"
+        >
+
+    </div>
+
+
+    <script src="script.js"></script>
+    <script src="galeria-config.js"></script>
+    <script src="galeria-abas.js"></script>
+
+</body>
+
+</html>
